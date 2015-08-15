@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://glosscss.com/gloss/matte.css"/>
+		<script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
+	</head>
+	<body>
+		<h1>Sentiment</h1>
+		<div id="indicator" style="width:30;height:30;border-radius:30"></div>
+		
+		<script>
+			Parse.initialize("blUDpurBbHrxo2kSraGKKEojp2nUJcubxyD4e6RE", "2BkhceeGdaUgRfotLMBHXY0XQTNUcrp7T6Ypt6KG");
+
+			var currentSentiment;
+			
+			var Sentiment = Parse.Object.extend("Sentiment");
+			var query = new Parse.Query(Sentiment);
+			query.get("P8i8TTCjtK", {
+			success: function(sentiment) {
+				// The object was retrieved successfully.
+				currentSentiment = sentiment.get("value");
+				updateVisual(currentSentiment);
+			},
+			error: function(object, error) {
+				// The object was not retrieved successfully.
+				// error is a Parse.Error with an error code and message.
+			}
+			});
+			
+			function updateVisual(sentiment) {
+				var sentimentColour;
+				
+				if(sentiment > 0) {
+					sentimentColour = "yellow";
+				}
+				if(sentiment < 0) {
+					sentimentColour = "blue";
+				}
+				
+				$("#indicator").css("background-color", sentimentColour);
+			}
+
+		</script>
+	</body>
+</html>
