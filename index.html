@@ -7,6 +7,7 @@
 	<body>
 		<h1>Sentiment</h1>
 		<div id="indicator" style="width:30;height:30;border-radius:30"></div>
+		<h3 id="value"></h3>
 		
 		<script>
 			Parse.initialize("blUDpurBbHrxo2kSraGKKEojp2nUJcubxyD4e6RE", "2BkhceeGdaUgRfotLMBHXY0XQTNUcrp7T6Ypt6KG");
@@ -38,6 +39,7 @@
 				}
 				
 				$("#indicator").css("background-color", sentimentColour);
+				$("#value").text(sentiment);
 			}
 
 		</script>
